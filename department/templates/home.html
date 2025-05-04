@@ -62,8 +62,8 @@
                                 <i class="fas fa-trophy fa-2x text-warning"></i>
                             </div>
                             <div>
-                                <h5 class="mb-1">National AI Challenge Winners 2023</h5>
-                                <p class="mb-0">Our student team won first place in the prestigious national competition.</p>
+                                <h5 class="mb-1">Maximum Hackathons Winners </h5>
+                                <p class="mb-0">Our student team won first place in the prestigious Hackathons.</p>
                             </div>
                         </div>
                     </div>
@@ -84,8 +84,8 @@
                                 <i class="fas fa-chart-line fa-2x text-warning"></i>
                             </div>
                             <div>
-                                <h5 class="mb-1">100% Placement Record</h5>
-                                <p class="mb-0">Consistent placement of our graduates in top AI/ML roles.</p>
+                                <h5 class="mb-1">100% career guidence</h5>
+                                <p class="mb-0">Consistent placement guidence to achieve top AI/ML roles.</p>
                             </div>
                         </div>
                     </div>
@@ -128,6 +128,7 @@
 </section>
 
 <!-- Staff Section -->
+<!-- In your home.html, locate the staff section and modify it like this: -->
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="section-header mb-5 text-center">
@@ -137,9 +138,14 @@
         <div class="row">
             {% for member in staff %}
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="staff-card text-center">
-                    <div class="staff-img mx-auto mb-3">
-                        <img src="{{ member.profile_picture.url }}" alt="{{ member.name }}" class="rounded-circle">
+                <div class="text-center">
+                    <!-- Modified profile picture container -->
+                    <div class="profile-pic-container mx-auto mb-3" 
+                         style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;">
+                        <img src="{{ member.profile_picture.url }}" 
+                             alt="{{ member.name }}"
+                             class="w-100 h-100 object-fit-cover"
+                             style="object-fit: cover;">
                     </div>
                     <h5>{{ member.name }}</h5>
                     <p class="text-primary">{{ member.designation }}</p>
@@ -153,6 +159,29 @@
         </div>
     </div>
 </section>
+
+<!-- Add this CSS either in your style.css or in a style tag -->
+<style>
+    /* Force circular shape and remove all borders */
+    .profile-pic-container {
+        border: none !important;
+        outline: none !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Remove any focus/hover effects */
+    .profile-pic-container img {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Optional: Add hover animation */
+    .profile-pic-container:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+</style>
 
 <!-- Gallery Preview -->
 <section class="py-5">

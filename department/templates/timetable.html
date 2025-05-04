@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title">Academic Timetables</h2>
+            <p class="section-subtitle">Download the latest schedules</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Year</th>
+                        <th>Section</th>
+                        <th>Upload Date</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for timetable in timetables %}
+                    <tr>
+                        <td>{{ timetable.title }}</td>
+                        <td>{{ timetable.description|default:"-" }}</td>
+                        <td>{{ timetable.upload_date|date:"M d, Y" }}</td>
+                        <td>
+                            <a href="{{ timetable.file.url }}" download class="btn btn-sm btn-primary">
+                                <i class="fas fa-download me-1"></i> Download
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No timetables available yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

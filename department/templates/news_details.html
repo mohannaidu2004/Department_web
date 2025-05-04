@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Back to News Link -->
+            <a href="{% url 'news_list' %}" class="btn btn-outline-primary mb-4">
+                <i class="fas fa-arrow-left me-2"></i>Back to News
+            </a>
+            
+            <!-- News Article -->
+            <article class="news-article">
+                <header class="mb-4">
+                    <h1 class="fw-bold">{{ news.title }}</h1>
+                    <div class="text-muted mb-3">
+                        <i class="far fa-calendar-alt me-2"></i>{{ news.created_at|date:"F d, Y" }}
+                    </div>
+                    {% if news.image %}
+                    <img src="{{ news.image.url }}" alt="{{ news.title }}" class="img-fluid rounded mb-4">
+                    {% endif %}
+                </header>
+                
+                <div class="news-content">
+                    {{ news.content|linebreaks }}
+                </div>
+            </article>
+
+            <!-- Related News (Optional) -->
+            <div class="mt-5">
+                <h3 class="mb-4">Recent News</h3>
+                <div class="row">
+                    {% for item in recent_news %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            {% if item.image %}
+                            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <p class="card-text">{{ item.content|truncatewords:20 }}</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="{% url 'news_detail' item.id %}" class="btn btn-sm btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

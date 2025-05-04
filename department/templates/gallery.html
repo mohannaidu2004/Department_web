@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title">Department Gallery</h2>
+            <p class="section-subtitle">Explore our events and activities</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for image in gallery_images %}
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item position-relative">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded shadow-sm">
+                    <div class="gallery-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end p-3">
+                        <div>
+                            <h5 class="text-white mb-1">{{ image.title }}</h5>
+                            {% if image.event_date %}
+                            <small class="text-white-50">
+                                <i class="far fa-calendar-alt me-1"></i>{{ image.event_date|date:"M d, Y" }}
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <a href="{{ image.image.url }}" data-lightbox="gallery" data-title="{{ image.title }}" class="stretched-link"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
