@@ -1,0 +1,146 @@
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Slide In Animations */
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.rotate {
+    animation: rotate 4s linear infinite;
+}
+
+/* Neural Network Animation (for loader) */
+.neural-network {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.neural-node {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+.neural-node:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.neural-node:nth-child(2) {
+    top: 30%;
+    left: 20%;
+    animation-delay: 0.2s;
+}
+
+.neural-node:nth-child(3) {
+    top: 30%;
+    right: 20%;
+    animation-delay: 0.4s;
+}
+
+.neural-node:nth-child(4) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 0.6s;
+}
+
+.neural-node:nth-child(5) {
+    bottom: 30%;
+    right: 20%;
+    animation-delay: 0.8s;
+}
+
+.neural-node:nth-child(6) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 1s;
+}
+
+.neural-connection {
+    position: absolute;
+    background-color: rgba(0, 188, 212, 0.3);
+    width: 2px;
+    transform-origin: top left;
+}
+
+/* Animate connections between nodes */
+.neural-connection:nth-child(7) {
+    /* Connection between node 1 and 2 */
+    height: calc(var(--distance) * 1.5);
+    top: 10px;
+    left: 60px;
+    transform: rotate(calc(var(--angle) * 1deg));
+    animation: connectionPulse 2s infinite;
+}
+
+.neural-connection:nth-child(8) {
+    /* Connection between node 1 and 3 */
+    height: calc(var(--distance) * 1.5);
+    top: 10px;
+    left: 60px;
+    transform: rotate(calc(var(--angle) * -1deg));
+    animation: connectionPulse 2s infinite 0.2s;
+}
+
+/* Add more connections as needed */
+
+@keyframes connectionPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article class="news-detail">
+    <h1>{{ news.title }}</h1>
+    <p class="text-muted">Published {{ news.created_at|date:"F j, Y" }}</p>
+    <div class="content">
+        {{ news.content|linebreaks }}
+    </div>
+</article>
+{% endblock %}

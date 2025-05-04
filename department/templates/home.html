@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative">
+    <div class="container">
+        <div class="row align-items-center min-vh-80">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">AI & ML Department</h1>
+                <p class="lead mb-4">Pioneering the future of Artificial Intelligence and Machine Learning education at NRI Institute of Technology, Agiripalli, Vijayawada.</p>
+                <a href="#about" class="btn btn-primary btn-lg me-2">Learn More</a>
+                <a href="#news" class="btn btn-outline-light btn-lg">Latest News</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/AI.png' %}" alt="AI & ML" class="img-fluid floating-animation">
+            </div>
+        </div>
+    </div>
+    <div class="custom-shape-divider-bottom">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title mb-4">Department Overview</h2>
+                <p class="lead">The AI & ML Department at NRI Institute of Technology is at the forefront of cutting-edge technology education.</p>
+                <p>Our department offers comprehensive programs that combine theoretical foundations with practical applications in Artificial Intelligence and Machine Learning. We focus on preparing students for the challenges of tomorrow's technology landscape.</p>
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-brain fa-3x text-primary"></i>
+                            </div>
+                            <h5>Expert Faculty</h5>
+                            <p>Learn from industry experts and academic scholars with real-world experience.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="feature-card p-4 h-100">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                            </div>
+                            <h5>Modern Labs</h5>
+                            <p>State-of-the-art computing facilities with dedicated AI/ML workstations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="achievements">
+                    <h3 class="mb-4">Our Achievements</h3>
+                    <div class="achievement-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="achievement-icon me-3">
+                                <i class="fas fa-trophy fa-2x text-warning"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">National AI Challenge Winners 2023</h5>
+                                <p class="mb-0">Our student team won first place in the prestigious national competition.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="achievement-icon me-3">
+                                <i class="fas fa-certificate fa-2x text-warning"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Industry Partnerships</h5>
+                                <p class="mb-0">Collaborations with leading tech companies for research and internships.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="d-flex align-items-center">
+                            <div class="achievement-icon me-3">
+                                <i class="fas fa-chart-line fa-2x text-warning"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">100% Placement Record</h5>
+                                <p class="mb-0">Consistent placement of our graduates in top AI/ML roles.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section id="news" class="py-5">
+    <div class="container py-5">
+        <div class="section-header mb-5 text-center">
+            <h2 class="section-title">Latest News</h2>
+            <p class="section-subtitle">Stay updated with our department activities and industry trends</p>
+        </div>
+        <div class="row">
+            {% for item in news %}
+            <div class="col-md-4 mb-4">
+                <div class="card news-card h-100">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.content|truncatewords:20 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <small class="text-muted">{{ item.created_at|date:"M d, Y" }}</small>
+                        <a href="{% url 'news_detail' item.id %}" class="btn btn-sm btn-outline-primary float-end">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'news_list' %}" class="btn btn-primary">View All News</a>
+        </div>
+    </div>
+</section>
+
+<!-- Staff Section -->
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="section-header mb-5 text-center">
+            <h2 class="section-title">Our Faculty</h2>
+            <p class="section-subtitle">Meet our dedicated team of educators and researchers</p>
+        </div>
+        <div class="row">
+            {% for member in staff %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="staff-card text-center">
+                    <div class="staff-img mx-auto mb-3">
+                        <img src="{{ member.profile_picture.url }}" alt="{{ member.name }}" class="rounded-circle">
+                    </div>
+                    <h5>{{ member.name }}</h5>
+                    <p class="text-primary">{{ member.designation }}</p>
+                    <p class="small">{{ member.qualification|truncatewords:8 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'staff_list' %}" class="btn btn-outline-primary">View All Faculty</a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Preview -->
+<section class="py-5">
+    <div class="container py-5">
+        <div class="section-header mb-5 text-center">
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-subtitle">Moments from our department events and activities</p>
+        </div>
+        <div class="row g-3">
+            {% for image in gallery_images|slice:":6" %}
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded">
+                    <div class="gallery-overlay">
+                        <h5>{{ image.title }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'gallery' %}" class="btn btn-primary">View Full Gallery</a>
+        </div>
+    </div>
+</section>
+
+<!-- Timetable Section -->
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="section-header mb-5 text-center">
+            <h2 class="section-title">Academic Timetables</h2>
+            <p class="section-subtitle">Download the latest schedules for our programs</p>
+        </div>
+        <div class="row">
+            {% for timetable in timetables %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ timetable.title }}</h5>
+                        {% if timetable.description %}
+                        <p class="card-text">{{ timetable.description }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{{ timetable.file.url }}" class="btn btn-primary" download>
+                            <i class="fas fa-download me-2"></i>Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'timetable_list' %}" class="btn btn-outline-primary">View All Timetables</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-5 bg-primary text-white">
+    <div class="container py-5 text-center">
+        <h2 class="mb-4">Have Questions? Get in Touch</h2>
+        <p class="lead mb-5">Our team is here to assist you with any inquiries about our programs, admissions, or research opportunities.</p>
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Contact Us</a>
+    </div>
+</section>
+{% endblock %}

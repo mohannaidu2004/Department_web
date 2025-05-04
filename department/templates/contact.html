@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}  <!-- Load the template tag library -->
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Contact Us</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        
+        <!-- Name Field -->
+        <div class="mb-3">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Full Name</label>
+            {% render_field form.name class="form-control" placeholder="Enter your name" %}
+            <div class="invalid-feedback">
+                {{ form.name.errors }}
+            </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            {% render_field form.email class="form-control" placeholder="example@email.com" %}
+            <div class="invalid-feedback">
+                {{ form.email.errors }}
+            </div>
+        </div>
+
+        <!-- Message Field -->
+        <div class="mb-3">
+            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+            {% render_field form.message class="form-control" rows="5" placeholder="Your message here..." %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</div>
+{% endblock %}
