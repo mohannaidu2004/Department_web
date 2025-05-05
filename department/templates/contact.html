@@ -1,37 +1,23 @@
 {% extends 'base.html' %}
-{% load widget_tweaks %}  <!-- Load the template tag library -->
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">Contact Us</h2>
-    <form method="post" class="needs-validation" novalidate>
-        {% csrf_token %}
-        
-        <!-- Name Field -->
-        <div class="mb-3">
-            <label for="{{ form.name.id_for_label }}" class="form-label">Full Name</label>
-            {% render_field form.name class="form-control" placeholder="Enter your name" %}
-            <div class="invalid-feedback">
-                {{ form.name.errors }}
+<div class="container py-5 text-center">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 600px;">
+        <div class="card-body p-5">
+            <h2 class="mb-4">Contact Information</h2>
+            <div class="alert alert-info">
+                <p class="mb-0">Please contact the AI & ML Department directly for any inquiries.</p>
+            </div>
+            
+            <div class="mt-4">
+                <h5>Department Contacts</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope me-2"></i> Email: aiml@nri.edu</li>
+                    <li><i class="fas fa-phone me-2"></i> Phone: +91 1234567890</li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i> Location: AIML Block ,Research & Development Lab ,NRI INSTITUTE OF TECHNOLOGY.</li>
+                </ul>
             </div>
         </div>
-
-        <!-- Email Field -->
-        <div class="mb-3">
-            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
-            {% render_field form.email class="form-control" placeholder="example@email.com" %}
-            <div class="invalid-feedback">
-                {{ form.email.errors }}
-            </div>
-        </div>
-
-        <!-- Message Field -->
-        <div class="mb-3">
-            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
-            {% render_field form.message class="form-control" rows="5" placeholder="Your message here..." %}
-        </div>
-
-        <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
