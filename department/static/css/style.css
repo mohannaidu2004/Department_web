@@ -8,7 +8,20 @@
     --dark-text: #212529;
     --light-text: #f8f9fa;
 }
+/* News card hover effect */
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
 
+/* Pagination active state */
+.page-item.active .page-link {
+    background-color: #1a237e;
+    border-color: #1a237e;
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--dark-text);

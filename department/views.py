@@ -3,6 +3,11 @@ from django.views.generic import ListView, DetailView
 from .models import *
 from django.views.generic import DetailView
 from .models import News
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import News
+
+
 
 class NewsDetailView(DetailView):
     model = News
@@ -31,7 +36,8 @@ class NewsListView(ListView):
     
     def get_queryset(self):
         return News.objects.filter(is_published=True).order_by('-created_at')
-
+    
+    
 class StaffListView(ListView):
     model = Staff
     template_name = 'staff.html'
